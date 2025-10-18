@@ -61,3 +61,22 @@
     background-color: #3a3c53;
     color: var(--text-light);
 }
+
+/* ... (tus estilos existentes de .sidebar, .sidebar h1) ... */
+
+.sidebar-menu a {
+    display: flex; /* <-- CAMBIO */
+    align-items: center; /* <-- CAMBIO */
+    gap: 12px; /* <-- NUEVO (espacio entre icono y texto) */
+    color: var(--text-muted);
+    /* ... (resto de tus estilos de .sidebar-menu a) ... */
+}
+
+/* ... (tus estilos de .active, .sidebar-footer) ... */
+
+.sidebar-footer button {
+    display: flex; /* <-- CAMBIO */
+    align-items: center; /* <-- CAMBIO */
+    gap: 12px; /* <-- NUEVO */
+    /* ... (resto de tus estilos de .sidebar-footer button) ... */
+}

@@ -1,0 +1,156 @@
+/* Contenedor principal de la página de registros */
+.registros-page {
+    /* Dejamos espacio para la barra de filtros inferior */
+    padding-bottom: 70px; 
+}
+
+/* Encabezado de la página */
+.registros-page .header {
+    padding: 40px 40px 20px 40px;
+    margin-bottom: 0;
+}
+
+/* Lista de registros */
+.registros-list {
+    padding: 0 40px;
+}
+
+/* Grupo de semana */
+.week-group {
+    margin-bottom: 25px;
+}
+
+.week-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #3a3c53;
+}
+
+.week-header span:first-child {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+.week-header span:last-child {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+/* Cada item de transacción */
+.registro-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+}
+
+.registro-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.registro-info {
+    flex-grow: 1;
+}
+
+.registro-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.registro-info p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.registro-amount {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.registro-amount span {
+    font-size: 16px;
+    font-weight: 600;
+}
+.registro-amount span.income {
+    color: var(--green-accent);
+}
+.registro-amount span.expense {
+    color: var(--red-accent);
+}
+
+.registro-amount p {
+    margin: 4px 0 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* Barra de Filtros Inferior */
+.period-filter-bar {
+    position: fixed;
+    bottom: 0;
+    left: 240px; /* Ancho del sidebar */
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: var(--surface-dark);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.filter-button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+    background-color: #3a3c53;
+}
+
+.filter-button.active {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+}
+
+/* Ajuste para móviles (si el sidebar desaparece) */
+@media (max-width: 768px) {
+    .registros-page .header {
+        padding: 20px 20px 10px 20px;
+    }
+    .registros-list {
+        padding: 0 20px;
+    }
+    .period-filter-bar {
+        left: 0; /* Ocupa todo el ancho en móvil */
+    }
+}

@@ -6,6 +6,7 @@ import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import AccountsPage from './pages/AccountsPage';
 import CategoriesPage from './pages/CategoriesPage';
+import RegistrosPage from './pages/RegistrosPage';
 import Sidebar from './components/layout/Sidebar';
 import FloatingActionButton from './components/FloatingActionButton';
 import TransactionModal from './components/TransactionModal';
@@ -59,6 +60,7 @@ function App() {
                                 <Route path="/" element={<DashboardPage />} /> 
                                 <Route path="/cuentas" element={<AccountsPage />} />
                                 <Route path="/categorias" element={<CategoriesPage />} />
+                                <Route path="/registros" element={<RegistrosPage />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </Routes>
                         </main>
