@@ -1,35 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import React, { useState, useMemo } from 'react';
+import { useData } from '../contexts/DataContext'; // <-- 1. Importa el Hook
+import AccountModal from '../components/AccountModal';
+import './ListPage.css';
 
 const AccountsPage = () => {
-    const [accounts, setAccounts] = useState([]);
+    // 2. Obtén TODOS los datos necesarios del contexto
+    const { accounts, transactions, transfers, loading } = useData();
+    const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const fetchAccounts = async () => {
-            const { data, error } = await supabase.from('accounts').select('*');
-            if (error) console.error('Error fetching accounts:', error);
-            else setAccounts(data);
-        };
-        fetchAccounts();
-    }, []);
+    // 3. QUITA todo el 'useState' y 'useEffect' de 'fetchData'. Ya no es necesario.
+
+    // 4. 'useMemo' ahora usa los datos del contexto y se recalculará solo
+    const accountsWithBalance = useMemo(() => {
+        return accounts.map(account => {
+            let balance = parseFloat(account.opening_balance);
+
+            // Sumar/Restar Transacciones
+            for (const tx of transactions) {
+                if (tx.account_id === account.id) {
+                    if (tx.type === 'Ingreso') {
+                        balance += parseFloat(tx.amount);
+                    } else if (tx.type === 'Gasto') {
+                        balance -= parseFloat(tx.amount);
+                    }
+                }
+            }
+
+            // Sumar/Restar Transferencias
+            for (const tr of transfers) {
+                if (tr.to_account_id === account.id) {
+                    balance += parseFloat(tr.amount);
+                }
+                if (tr.from_account_id === account.id) {
+                    balance -= parseFloat(tr.amount);
+                }
+            }
+            return { ...account, current_balance: balance };
+        });
+    }, [accounts, transactions, transfers]); // Depende de los datos del contexto
+
+    if (loading) {
+        return <div>Cargando datos...</div>;
+    }
 
     return (
         <div>
+            {/* 5. El modal ya NO necesita la prop 'refreshAccounts' */}
+            {showModal && <AccountModal closeModal={() => setShowModal(false)} />}
+            
             <div className="header">
                 <h2>Cuentas</h2>
-                <button className="btn-primary">+ Añadir Cuenta</button>
+                <button className="btn-primary" onClick={() => setShowModal(true)}>+ Añadir Cuenta</button>
             </div>
+
+            <p className="page-description">Administra tus fuentes de ingresos y gastos.</p>
+            
             <div className="card">
-                {accounts.length > 0 ? (
-                    accounts.map(acc => (
+                {accountsWithBalance.length > 0 ? (
+                    accountsWithBalance.map(acc => (
                         <div key={acc.id} className="list-item">
                             <div className="list-item-main">
                                 <h4>{acc.name}</h4>
                                 <p>{acc.institution || 'Sin institución'}</p>
                             </div>
-                            <span className="list-item-amount">
-                                Q{acc.opening_balance.toFixed(2)}
-                            </span>
+                            <div className="list-item-details">
+                                <span className="list-item-amount">
+                                    Q{acc.current_balance.toFixed(2)}
+                                </span>
+                            </div>
                         </div>
                     ))
                 ) : (

@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
+import { DataProvider } from './contexts/DataContext'; // <-- 1. Importa el Proveedor
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import AccountsPage from './pages/AccountsPage';
 import CategoriesPage from './pages/CategoriesPage';
 import Sidebar from './components/layout/Sidebar';
+import FloatingActionButton from './components/FloatingActionButton';
+import TransactionModal from './components/TransactionModal';
 import './App.css';
 
 function App() {
     const [session, setSession] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [showTransactionModal, setShowTransactionModal] = useState(false);
+    
+    // YA NO NECESITAS EL 'refreshKey'. El contexto lo maneja.
 
     useEffect(() => {
         const getSession = async () => {
@@ -18,18 +24,21 @@ function App() {
             setSession(session);
             setLoading(false);
         };
-
         getSession();
-
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
         });
-
         return () => subscription.unsubscribe();
     }, []);
 
+    const handleTransactionClose = () => {
+        setShowTransactionModal(false);
+    };
+
+    // La función 'onSuccess' ya no es necesaria, el modal llamará al contexto
+    
     if (loading) {
-        return <div>Cargando...</div>; // O un spinner/componente de carga
+        return <div>Cargando...</div>;
     }
 
     return (
@@ -40,17 +49,29 @@ function App() {
                     <Route path="*" element={<Navigate to="/auth" />} />
                 </Routes>
             ) : (
-                <div className="app-container">
-                    <Sidebar />
-                    <main className="main-content">
-                        <Routes>
-                            <Route path="/" element={<DashboardPage />} />
-                            <Route path="/cuentas" element={<AccountsPage />} />
-                            <Route path="/categorias" element={<CategoriesPage />} />
-                            <Route path="*" element={<Navigate to="/" />} />
-                        </Routes>
-                    </main>
-                </div>
+                // 2. Envuelve TODO el layout autenticado con el DataProvider
+                <DataProvider>
+                    <div className="app-container">
+                        <Sidebar />
+                        <main className="main-content">
+                            <Routes>
+                                {/* Ya no necesitas pasar la 'key' */}
+                                <Route path="/" element={<DashboardPage />} /> 
+                                <Route path="/cuentas" element={<AccountsPage />} />
+                                <Route path="/categorias" element={<CategoriesPage />} />
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </Routes>
+                        </main>
+                        <FloatingActionButton onClick={() => setShowTransactionModal(true)} />
+                        
+                        {showTransactionModal && (
+                            <TransactionModal 
+                                closeModal={handleTransactionClose} 
+                                // Ya no pasamos 'onSuccess'
+                            />
+                        )}
+                    </div>
+                </DataProvider>
             )}
         </Router>
     );

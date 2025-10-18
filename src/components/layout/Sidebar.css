@@ -1,0 +1,63 @@
+/* src/components/layout/Sidebar.css */
+
+.sidebar {
+    width: 240px;
+    background-color: var(--surface-dark);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Evita que el sidebar se encoja */
+    box-sizing: border-box;
+}
+
+.sidebar h1 {
+    font-size: 24px;
+    margin: 0 0 40px 0;
+    color: var(--text-light);
+    padding-left: 15px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background-color: #3a3c53;
+    color: var(--text-light);
+}
+
+.sidebar-menu a.active {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.sidebar-footer button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-footer button:hover {
+    background-color: #3a3c53;
+    color: var(--text-light);
+}
