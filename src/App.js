@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { supabase } from './supabaseClient';
-import { DataProvider } from './contexts/DataContext'; // <-- 1. Importa el Proveedor
+import { DataProvider } from './contexts/DataContext';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import AccountsPage from './pages/AccountsPage';
 import CategoriesPage from './pages/CategoriesPage';
 import RegistrosPage from './pages/RegistrosPage';
 import EstadisticasPage from './pages/EstadisticasPage';
+import PagosPage from './pages/PagosPage';
 import Sidebar from './components/layout/Sidebar';
 import FloatingActionButton from './components/FloatingActionButton';
 import TransactionModal from './components/TransactionModal';
@@ -19,8 +20,6 @@ function App() {
     const [loading, setLoading] = useState(true);
     const [showTransactionModal, setShowTransactionModal] = useState(false);
     
-    // YA NO NECESITAS EL 'refreshKey'. El contexto lo maneja.
-
     useEffect(() => {
         const getSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
@@ -64,6 +63,7 @@ function App() {
                                 <Route path="/categorias" element={<CategoriesPage />} />
                                 <Route path="/registros" element={<RegistrosPage />} />
                                 <Route path="/estadisticas/*" element={<EstadisticasPage />} />
+                                <Route path="/pagos" element={<PagosPage />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </Routes>
                         </main>

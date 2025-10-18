@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import SaldoReport from './estadisticas/SaldoReport'; // <-- 1. Importa el nuevo reporte
-import './estadisticas/Estadisticas.css'; // <-- 2. Importa el nuevo CSS
+import SaldoReport from './estadisticas/SaldoReport';
+import PanoramaReport from './estadisticas/PanoramaReport';
+import './estadisticas/Estadisticas.css'; 
 
 const EstadisticasPage = () => {
     const location = useLocation();
@@ -15,6 +16,7 @@ const EstadisticasPage = () => {
             case 'saldo':
                 return <SaldoReport />;
             case 'panorama':
+                return <PanoramaReport />;
             case 'flujo':
             case 'gasto':
             // ... etc.

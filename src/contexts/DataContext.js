@@ -10,6 +10,7 @@ export const DataProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
     const [transactions, setTransactions] = useState([]);
     const [transfers, setTransfers] = useState([]);
+    const [scheduledTransactions, setScheduledTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // 3. Crear las funciones de carga de datos
@@ -39,6 +40,16 @@ export const DataProvider = ({ children }) => {
         else setTransfers(data);
     }, []);
 
+    const fetchScheduledTransactions = useCallback(async () => {
+        const { data, error } = await supabase
+            .from('scheduled_transactions')
+            .select('*, categories ( name, color )') // Traemos la categoría
+            .order('next_due_date');
+        
+        if (error) console.error('Error fetching scheduled transactions:', error);
+        else setScheduledTransactions(data);
+    }, []);
+
     // 4. Función "Maestra" para recargar todo
     const refreshAllData = useCallback(async () => {
         setLoading(true);
@@ -46,22 +57,24 @@ export const DataProvider = ({ children }) => {
             fetchAccounts(),
             fetchCategories(),
             fetchTransactions(),
-            fetchTransfers()
+            fetchTransfers(),
+            fetchScheduledTransactions()
         ]);
         setLoading(false);
-    }, [fetchAccounts, fetchCategories, fetchTransactions, fetchTransfers]);
+    }, [fetchAccounts, fetchCategories, fetchTransactions, fetchTransfers, fetchScheduledTransactions]);
 
-    // 5. Cargar todos los datos la primera vez
+    
     useEffect(() => {
         refreshAllData();
     }, [refreshAllData]);
 
-    // 6. Definir el valor que compartirá el contexto
+
     const value = {
         accounts,
         categories,
         transactions,
         transfers,
+        scheduledTransactions,
         loading,
         refreshAllData // La función clave que usarán los modales
     };

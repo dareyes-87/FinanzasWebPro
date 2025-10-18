@@ -5,7 +5,7 @@ import { supabase } from '../../supabaseClient';
 import './Sidebar.css'; 
 
 // 2. Importa los iconos necesarios
-import { Home, CreditCard, Tag, List, LogOut, BarChart2, ChevronDown } from 'lucide-react';
+import { Home, CreditCard, Tag, List, LogOut, BarChart2, ChevronDown, CalendarCheck } from 'lucide-react';
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -42,6 +42,9 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink to="/registros" className={({ isActive }) => isActive ? 'active' : ''}>
                     <List size={20} /> Registros
+                </NavLink>
+                <NavLink to="/pagos" className={({ isActive }) => isActive ? 'active' : ''}>
+                    <CalendarCheck size={20} /> Pagos Planificados
                 </NavLink>
                 
                 {/* --- 6. MENÚ COLAPSABLE DE ESTADÍSTICAS --- */}
