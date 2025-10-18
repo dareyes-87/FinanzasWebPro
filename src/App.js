@@ -7,9 +7,11 @@ import DashboardPage from './pages/DashboardPage';
 import AccountsPage from './pages/AccountsPage';
 import CategoriesPage from './pages/CategoriesPage';
 import RegistrosPage from './pages/RegistrosPage';
+import EstadisticasPage from './pages/EstadisticasPage';
 import Sidebar from './components/layout/Sidebar';
 import FloatingActionButton from './components/FloatingActionButton';
 import TransactionModal from './components/TransactionModal';
+
 import './App.css';
 
 function App() {
@@ -61,6 +63,7 @@ function App() {
                                 <Route path="/cuentas" element={<AccountsPage />} />
                                 <Route path="/categorias" element={<CategoriesPage />} />
                                 <Route path="/registros" element={<RegistrosPage />} />
+                                <Route path="/estadisticas/*" element={<EstadisticasPage />} />
                                 <Route path="*" element={<Navigate to="/" />} />
                             </Routes>
                         </main>

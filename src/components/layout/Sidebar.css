@@ -80,3 +80,94 @@
     gap: 12px; /* <-- NUEVO */
     /* ... (resto de tus estilos de .sidebar-footer button) ... */
 }
+
+
+
+/* ... (Todos tus estilos existentes de .sidebar, .sidebar-menu a, .sidebar-footer, etc.) ... */
+
+/* --- NUEVOS ESTILOS PARA MENÚ COLAPSABLE --- */
+
+/* Contenedor del botón y el submenú */
+.menu-item-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* El botón principal "Estadísticas" */
+.menu-item-button {
+    /* Resetea estilos de botón */
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    
+    /* Estilos de NavLink */
+    display: flex;
+    justify-content: space-between; /* Para poner la flecha a la derecha */
+    align-items: center;
+    width: 100%;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Contenido del botón (icono + texto) */
+.menu-item-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Flecha (chevron) */
+.menu-chevron {
+    transition: transform 0.2s ease;
+}
+.menu-chevron.open {
+    transform: rotate(180deg);
+}
+
+/* Hover y Active (igual que los NavLink) */
+.menu-item-button:hover {
+    background-color: #3a3c53;
+    color: var(--text-light);
+}
+
+.menu-item-button.active {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+}
+
+/* Contenedor del submenú */
+.submenu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 24px; /* Indentación */
+    margin-bottom: 8px;
+}
+
+/* Enlaces del submenú */
+.submenu a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 15px; /* Más pequeño que el principal */
+    margin-bottom: 4px;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.submenu a:hover {
+    background-color: #3a3c53;
+    color: var(--text-light);
+}
+
+.submenu a.active {
+    background-color: #3a3c53; /* Un 'active' más sutil para el submenú */
+    color: var(--text-light);
+    font-weight: 500;
+}
