@@ -2,6 +2,9 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import SaldoReport from './estadisticas/SaldoReport';
 import PanoramaReport from './estadisticas/PanoramaReport';
+import FlujoDeFondosReport from './estadisticas/FlujoDeFondosReport';
+import GastoReport from './estadisticas/GastoReport';
+
 import './estadisticas/Estadisticas.css'; 
 
 const EstadisticasPage = () => {
@@ -18,8 +21,9 @@ const EstadisticasPage = () => {
             case 'panorama':
                 return <PanoramaReport />;
             case 'flujo':
+                return <FlujoDeFondosReport />;
             case 'gasto':
-            // ... etc.
+                return <GastoReport />;
             default:
                 return (
                     <div className="stats-card">

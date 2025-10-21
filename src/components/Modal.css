@@ -1,58 +1,64 @@
+/* --- Tu CSS Existente (Base) --- */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
 }
 
 .modal-content {
-    background-color: var(--surface-dark);
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+background-color: var(--surface-dark);
+padding: 30px;
+border-radius: 12px;
+width: 90%;
+    /* Aumenté el max-width para que quepan los nuevos campos */
+max-width: 500px; 
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+    /* Añadí esto para que el título sea claro */
+    color: var(--text-light); 
 }
 
 .modal-header h3 {
-    margin: 0;
-    font-size: 22px;
+margin: 0;
+font-size: 22px;
 }
 
 .close-button {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 28px;
-    cursor: pointer;
-    line-height: 1;
+background: none;
+border: none;
+color: var(--text-muted);
+font-size: 28px;
+cursor: pointer;
+line-height: 1;
 }
 
 .form-group {
-    margin-bottom: 20px;
-    text-align: left;
+margin-bottom: 20px;
+text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-muted);
+display: block;
+margin-bottom: 8px;
+color: var(--text-muted);
+font-weight: 600; /* Un poco más legible */
 }
 
-.form-group input,
+/* Modifiqué esto para incluir solo text */
+.form-group input[type="text"],
 .form-group select {
     width: 100%;
     padding: 12px;
@@ -62,4 +68,151 @@
     border-radius: 8px;
     color: var(--text-light);
     font-size: 16px;
+}
+
+/* --- (NUEVOS ESTILOS) --- */
+/* --- Añadidos para el CategoryModal.js actualizado --- */
+
+/* Estilo para el input de color */
+.form-group input.color-input {
+width: 100%;
+height: 48px;
+padding: 5px;
+box-sizing: border-box;
+background-color: var(--background-dark);
+border: 1px solid #3a3c53;
+border-radius: 8px;
+cursor: pointer;
+}
+
+/* Estilos para los botones de radio (Tipo) */
+.radio-group {
+    display: flex;
+    gap: 5px;
+    border: 1px solid #3a3c53; /* Usando tu borde */
+    border-radius: 8px;
+    padding: 5px;
+    background-color: var(--background-dark); /* Usando tu fondo */
+}
+
+.radio-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.2s ease-in-out;
+}
+.radio-label input[type="radio"] {
+    display: none; /* Ocultamos el radio real */
+}
+.radio-label.active {
+    /* Asumo que tienes esta variable de tu tema */
+    background-color: var(--blue-accent); 
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Estilos para el selector de Naturaleza */
+.radio-group.nature-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.radio-label.nature {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid #3a3c53; /* Usando tu borde */
+    background-color: var(--background-dark); /* Usando tu fondo */
+    text-align: left;
+}
+.radio-label.nature.active {
+    border-color: var(--blue-accent); /* Asumo variable */
+    background-color: rgba(0, 123, 255, 0.05); /* Un fondo sutil */
+    color: var(--text-light);
+}
+.radio-label.nature.active .nature-hint {
+    color: var(--text-muted);
+}
+
+/* Estilos para texto de ayuda */
+.form-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: -12px 0 12px 0;
+}
+
+.nature-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Estilo para errores */
+.form-error {
+    color: var(--red-accent); /* Asumo variable */
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid var(--red-accent); /* Asumo variable */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Pie de página del modal (botones) */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+    border-top: 1px solid #3a3c53; /* Usando tu color de borde */
+    padding-top: 20px;
+}
+
+/* Estilos para el spinner de carga */
+.spinner-icon {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Estilos para los botones (asumiendo que tienes estas clases) */
+/* Si no las tienes, puedes copiarlas de otros archivos CSS tuyos */
+.btn-primary {
+    /* ... tus estilos de btn-primary ... */
+    /* Ejemplo: */
+    background-color: var(--blue-accent);
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+     /* ... tus estilos de btn-secondary ... */
+    /* Ejemplo: */
+    background-color: var(--surface-light);
+    color: var(--text-light);
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
 }
