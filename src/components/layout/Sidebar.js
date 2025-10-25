@@ -1,18 +1,19 @@
+// src/components/layout/Sidebar.js
+
 import React, { useState } from 'react';
-// 1. Importa 'useLocation' para el estado activo y 'useState' para colapsar
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
-import './Sidebar.css'; 
+import { useData } from '../../contexts/DataContext'; // <-- ¡ASEGÚRATE DE QUE ESTA LÍNEA ESTÉ!
+import './Sidebar.css';
 
 // 2. Importa los iconos necesarios
-import { Home, CreditCard, Tag, List, LogOut, BarChart2, ChevronDown, CalendarCheck } from 'lucide-react';
+import { Home, CreditCard, Tag, List, LogOut, BarChart2, ChevronDown, CalendarCheck, Bot } from 'lucide-react';
 
 const Sidebar = () => {
     const navigate = useNavigate();
-    const location = useLocation(); // Hook para saber la ruta actual
-    
-    // 3. Estado para saber qué menú está abierto
+    const location = useLocation();
     const [openMenu, setOpenMenu] = useState(null);
+    const { setShowChatbot } = useData();
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
@@ -46,6 +47,9 @@ const Sidebar = () => {
                 <NavLink to="/pagos" className={({ isActive }) => isActive ? 'active' : ''}>
                     <CalendarCheck size={20} /> Pagos Planificados
                 </NavLink>
+                <button className="sidebar-button" onClick={() => setShowChatbot(true)}>
+                    <Bot size={20} /> Asesor IA
+                </button>
                 
                 {/* --- 6. MENÚ COLAPSABLE DE ESTADÍSTICAS --- */}
                 <div className="menu-item-wrapper">

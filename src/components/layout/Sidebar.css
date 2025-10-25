@@ -171,3 +171,32 @@
     color: var(--text-light);
     font-weight: 500;
 }
+
+
+
+
+
+
+/* ... (todos tus estilos existentes de .sidebar-menu, NavLink, etc.) ... */
+
+/* Estilo para el nuevo botón "Asesor IA" (y otros botones no-NavLink) */
+.sidebar-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-button:hover {
+    background-color: var(--surface-light);
+    color: var(--text-light);
+}

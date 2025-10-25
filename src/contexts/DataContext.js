@@ -12,6 +12,7 @@ export const DataProvider = ({ children }) => {
     const [transfers, setTransfers] = useState([]);
     const [scheduledTransactions, setScheduledTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showChatbot, setShowChatbot] = useState(false);
 
     // 3. Crear las funciones de carga de datos
     // Usamos useCallback para que React no las re-cree innecesariamente
@@ -76,7 +77,9 @@ export const DataProvider = ({ children }) => {
         transfers,
         scheduledTransactions,
         loading,
-        refreshAllData // La función clave que usarán los modales
+        refreshAllData,
+        showChatbot,
+        setShowChatbot
     };
 
     return (
