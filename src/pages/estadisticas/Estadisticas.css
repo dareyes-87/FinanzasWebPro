@@ -336,3 +336,169 @@
     transition: width 0.5s ease-in-out;
     /* El color se aplica inline con style= */
 }
+
+
+
+
+
+
+/* ... (Tus estilos existentes para .stats-card, .period-filter-bar, etc.) ... */
+
+/* --- Tabla de Flujo de Caja --- */
+.cashflow-table {
+    width: 100%;
+    border-collapse: collapse; /* Bordes limpios */
+    margin-top: 20px;
+}
+.cashflow-table th, .cashflow-table td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--surface-light);
+}
+.cashflow-table th {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+.cashflow-table td {
+    color: var(--text-light);
+    font-size: 15px;
+}
+.cashflow-table td:nth-child(2),
+.cashflow-table th:nth-child(2) {
+    color: var(--green-accent); /* Ingresos */
+    text-align: right;
+}
+.cashflow-table td:nth-child(3),
+.cashflow-table th:nth-child(3) {
+    color: var(--red-accent); /* Gastos */
+    text-align: right;
+}
+.cashflow-table tr.total-row td {
+    font-weight: 700;
+    font-size: 16px;
+}
+.cashflow-table tfoot tr.net-flow-row td {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-light);
+    border-bottom: none;
+    text-align: right;
+}
+.cashflow-table tfoot tr.net-flow-row td:first-child {
+    text-align: left;
+    color: var(--text-muted);
+}
+.cashflow-table .income { color: var(--green-accent) !important; }
+.cashflow-table .expense { color: var(--red-accent) !important; }
+
+/* --- KPI de Comparación (Flujo Neto vs Anterior) --- */
+.kpi-comparison {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--surface-light);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.kpi-comparison-main, .kpi-comparison-vs {
+    display: flex;
+    flex-direction: column;
+}
+.kpi-comparison-main .kpi-label {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+.kpi-comparison-main .kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+}
+.kpi-comparison-vs {
+    align-items: flex-end;
+}
+.kpi-comparison-vs .kpi-label {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+.kpi-percentage {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.kpi-percentage.income { color: var(--green-accent); }
+.kpi-percentage.expense { color: var(--red-accent); }
+
+
+/* --- Lista de Desglose de Categorías (Informes) --- */
+.category-report-list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.category-report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--surface-light);
+    padding-bottom: 10px;
+}
+.category-report-header h4 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--text-light);
+}
+.category-report-totals {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+.category-report-totals .percentage {
+    font-size: 13px;
+    font-weight: 600;
+}
+.category-report-totals .percentage.income { color: var(--green-accent); }
+.category-report-totals .percentage.expense { color: var(--red-accent); }
+.category-report-totals span:last-child {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.category-report-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.category-report-icon {
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Color y opacidad se ponen inline */
+}
+.category-report-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.category-report-details span:first-child {
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 15px;
+}
+.category-report-details .percentage {
+    font-size: 13px;
+    font-weight: 600;
+}
+.category-report-amount {
+    font-size: 16px;
+    font-weight: 700;
+}
+.category-report-amount.income { color: var(--green-accent); }
+.category-report-amount.expense { color: var(--red-accent); }

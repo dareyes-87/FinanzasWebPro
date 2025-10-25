@@ -4,6 +4,7 @@ import SaldoReport from './estadisticas/SaldoReport';
 import PanoramaReport from './estadisticas/PanoramaReport';
 import FlujoDeFondosReport from './estadisticas/FlujoDeFondosReport';
 import GastoReport from './estadisticas/GastoReport';
+import InformesReport from './estadisticas/InformesReport';
 
 import './estadisticas/Estadisticas.css'; 
 
@@ -24,6 +25,8 @@ const EstadisticasPage = () => {
                 return <FlujoDeFondosReport />;
             case 'gasto':
                 return <GastoReport />;
+            case 'informes':
+                return <InformesReport />;
             default:
                 return (
                     <div className="stats-card">
