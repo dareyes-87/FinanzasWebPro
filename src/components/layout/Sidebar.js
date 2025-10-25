@@ -70,9 +70,7 @@ const Sidebar = () => {
                             <NavLink to="/estadisticas/panorama">Panorama</NavLink>
                             <NavLink to="/estadisticas/flujo">Flujo de fondos</NavLink>
                             <NavLink to="/estadisticas/gasto">Gasto</NavLink>
-                            <NavLink to="/estadisticas/credito">Crédito</NavLink>
                             <NavLink to="/estadisticas/informes">Informes</NavLink>
-                            <NavLink to="/estadisticas/activos">Activos</NavLink>
                         </div>
                     )}
                 </div>
