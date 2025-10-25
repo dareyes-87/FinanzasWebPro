@@ -615,28 +615,108 @@
 /* ... (todos tus estilos existentes) ... */
 
 /* --- NUEVOS ESTILOS PARA PAGOS PLANIFICADOS --- */
+/* Encabezado para agrupar (ej: "Servicios Casa") */
+.list-group {
+    width: 100%;
+    margin-bottom: 25px;
+}
 
-/* Contenedor para el monto y la sub-fecha */
-.list-item-amount-group {
+.list-group-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--surface-light);
+}
+
+/* --- Nuevos estilos para el item de PAGO --- */
+
+.modern-list-item {
+    /* Aseguramos que tenga display flex y align-items center */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--surface-dark);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--surface-light);
+    transition: background-color 0.2s;
+}
+.modern-list-item:hover {
+    background-color: var(--surface-light);
+}
+
+/* Contenedor del ícono (círculo) */
+.item-icon-wrapper {
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid; /* El color se aplica inline */
+    /* El fondo se aplica inline */
+}
+
+/* Contenido (título, fecha, frecuencia) */
+.item-content {
+    flex-grow: 1; /* Ocupa el espacio del medio */
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Alinea a la derecha */
-    margin-right: 10px;
+    gap: 2px;
 }
-
-/* El monto principal (reutiliza 'list-item-amount' pero le quita el bold) */
-.list-item-amount-group .list-item-amount {
-    font-weight: 600; /* Un poco menos bold que el saldo de la cuenta */
-    font-size: 17px;
+.item-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin: 0;
 }
-
-/* Color del monto (si no lo tienes ya) */
-.list-item-amount.income { color: var(--green-accent); }
-.list-item-amount.expense { color: var(--red-accent); }
-
-/* La fecha "Próximo: ..." */
-.list-item-sub-amount {
+.item-meta {
     font-size: 13px;
     color: var(--text-muted);
-    margin: 4px 0 0 0;
+    margin: 0;
+}
+.item-meta-highlight {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Contenido derecho (monto, estado) */
+.item-right-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    min-width: 120px;
+    text-align: right;
+}
+.item-amount {
+    font-size: 18px;
+    font-weight: 700;
+}
+.item-amount.income {
+    color: var(--green-accent);
+}
+.item-amount.expense {
+    color: var(--red-accent);
+}
+
+/* Badge de Estado (Activo/Inactivo) */
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+.status-badge.active {
+    color: var(--green-accent);
+    background-color: rgba(0, 204, 153, 0.1);
+}
+.status-badge.inactive {
+    color: var(--text-muted);
+    background-color: var(--surface-light);
 }
