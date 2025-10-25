@@ -1,6 +1,11 @@
+// src/supabaseClient.js
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://cqwnnlpnqvmkuzkzpfmr.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxd25ubHBucXZta3V6a3pwZm1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1NjMyOTAsImV4cCI6MjA3NjEzOTI5MH0.F8Bsl_ytgrAIoSZUp8Tk2oQhQ4shnT1eZqv23N8-o4E';
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Las variables de entorno de Supabase (REACT_APP_SUPABASE_URL y REACT_APP_SUPABASE_ANON_KEY) no están definidas.");
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
